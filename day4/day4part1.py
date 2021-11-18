@@ -43,6 +43,7 @@ for i in range(len(documents)):
 print(sum)
 
 #Output 206
+#added a blank line to input for code to work
 
 
 
