@@ -112,14 +112,11 @@ def isValidPid(tuples):
 #check if document is valid
 def isValid(tuples):
     return (isValidByr(tuples) and isValidIyr(tuples) and isValidEyr(tuples) and isValidHgt(tuples) and isValidHcl(tuples) and isValidEcl(tuples) and isValidPid(tuples) and isCidValid(tuples))
-    #return  isCidValid(tuples)
 
 documents = getDocuments(abs_file_path)
 sum = 0
 for i in range(len(documents)):
     sum += isValid(getTuples(documents[i]))
-    if isValid(getTuples(documents[i])):
-        #print(documents[i])
 print(sum)
 
 
