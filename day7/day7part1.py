@@ -1,5 +1,6 @@
 import os
 import string
+from collections import defaultdict
 
 #gets input file on every OS
 script_dir = os.path.dirname(__file__) #abs script directory
@@ -12,11 +13,25 @@ def getRules(abs_file_path):
         f.seek(0)
         rules = list()
         for line in f.readlines(): 
-            rules.append(line.rstrip("\n").split(" bags contain "))
+            rules.append(line.rstrip(".\n").split(" bags contain "))
         return rules
 
 rules = getRules(abs_file_path)
-count = 0
-for x in rules:
-    count += sum(["shiny gold" in x[1]])
-print(count)
+
+# def inBagOf(bag, color):
+#     for key,value in bag:
+#         print(key,value)
+
+bag = defaultdict(dict)
+#print(type(bag))
+for rule in rules:
+    colors = rule[0]
+    parts = rule[1].split(", ")
+    for id,part in enumerate(parts):
+        numberPart = parts[id][0]
+        namePart = parts[id][2:].replace(" bags", " bag").replace(" bag", "")
+        bag[colors].update({namePart:numberPart})
+print(bag["shiny gold"])
+
+for color in bag:
+    (bag[color].get('light aqua'))
